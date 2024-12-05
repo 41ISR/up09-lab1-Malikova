@@ -33,6 +33,7 @@
 ## Технические требования:
 
 -   Как стартер использовать [Vite](https://vite.dev/) (React + TypeScript)
+-   Проект должен быть оформлен согласно архитектуре [Feature-sliced design](https://feature-sliced.design/) 
 -   Глобальный стейт менеджер [Zustand](https://zustand-demo.pmnd.rs/)
 -   Для запросов использовать [axios](https://axios-http.com)
 -   Использовать [OMDb API](http://www.omdbapi.com/) для получения данных о фильмах. Документация OMDb API
