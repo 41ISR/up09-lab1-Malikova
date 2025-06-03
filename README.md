@@ -1,53 +1,50 @@
-# Задание: Разработка сайта с использованием OMDb API
+# React + TypeScript + Vite
 
-## Описание:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Вам предстоит создать одностраничное веб-приложение, которое взаимодействует с OMDb API для поиска информации о фильмах. Сайт должен содержать три основные страницы:
+Currently, two official plugins are available:
 
--   Поиск фильмов – позволяет пользователю искать фильмы по названию, отображать результаты поиска и предоставлять возможность лайкать фильмы.
--   Подробная информация о фильме – отображает полную информацию о выбранном фильме.
--   Список лайкнутых фильмов\* – отображает фильмы, которые пользователь отметил лайком.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Требования:
+## Expanding the ESLint configuration
 
-### Страница поиска фильмов:
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
--   Поле ввода для ввода названия фильма.
--   Кнопка для выполнения поиска.
--   Список фильмов, соответствующих запросу, с краткой информацией (постер, название, год выпуска).
--   Кнопка "Лайк" рядом с каждым фильмом, позволяющая добавлять фильм в список лайкнутых.
--   Пагинация\*
+- Configure the top-level `parserOptions` property like this:
 
-### Страница подробной информации о фильме:
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
--   Загружать полную информацию о фильме, используя его imdbID (например: описание, жанры, режиссер, актеры, рейтинг).
--   Отображать постер.
--   Кнопка для лайка фильма.\*
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-### Страница списка лайкнутых фильмов:
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
--   Отображать список всех фильмов, которые пользователь отметил лайком.
--   Возможность удалить фильм из списка лайкнутых.
--   Клик по названию фильма ведет на страницу с подробной информацией.
-
-## Технические требования:
-
--   Как стартер использовать [Vite](https://vite.dev/) (React + TypeScript)
--   Проект должен быть оформлен согласно архитектуре [Feature-sliced design](https://feature-sliced.design/) 
--   Глобальный стейт менеджер [Zustand](https://zustand-demo.pmnd.rs/)
--   Для запросов использовать [axios](https://axios-http.com)
--   Использовать [OMDb API](http://www.omdbapi.com/) для получения данных о фильмах. Документация OMDb API
--   Обеспечить маршрутизацию между страницами (используя React Router).
--   Реализовать хранение списка лайкнутых фильмов с помощью мидлварки persist в стейт-менеджере zustand
--   Под поле ввода и кнопку создавать отдельные пользовательские компоненты
-
-## Сдача задания
-
-1. Создать репозиторий под названием `up09-lab1-{ваша_фамилия}`
-2. Оформить pull request из ветки `main` в ветку `done`
-
-## Материалы
-
-Ключ для OMDB API
-
-> `505480d7`
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
