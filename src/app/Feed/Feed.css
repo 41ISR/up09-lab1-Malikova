@@ -1,0 +1,8 @@
+.feed {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+.pagination{width:100%;text-align: center;grid-column-start:1;grid-column-end: -1;}
+.paginationOff{display:none;} 
